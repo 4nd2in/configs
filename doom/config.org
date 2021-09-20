@@ -1,0 +1,88 @@
+#+TITLE: 4nd2in's Doom Emacs Config
+#+AUTHOR: 4nd2in
+#+PROPERTY: header-args :tangle config.el
+
+* CONTENT :toc:
+- [[#about][ABOUT]]
+- [[#emojis][EMOJIS]]
+- [[#fonts][FONTS]]
+- [[#org-mode][ORG MODE]]
+- [[#projectile][PROJECTILE]]
+- [[#line-settings][LINE SETTINGS]]
+- [[#theme][THEME]]
+
+* ABOUT
+Personal Doom Emacs Config written in ORG Mode. Because its cool.
+Also setting my credentials:
+
+#+begin_src emacs-lisp
+(setq user-full-name "4nd2in")
+#+end_src
+
+* EMOJIS
+Emojify is an extension for Emacs to display emojis. It can display GitHub style emojis like :smile: or plain ascii ones like :)
+#+begin_src emacs-lisp
+(use-package emojify
+  :hook (after-init . global-emojify-mode))
+#+end_src
+
+* FONTS
+Related doom emacs font settings:
++ 'doom-font' -- standard monospace font that is used for most things in Emacs.
++ 'doom-variable-pitch-font' -- variable font which is useful in some Emacs plugins.
++ 'doom-big-font' -- used in doom-big-font-mode; useful for presentations.
++ 'font-lock-comment-face' -- for comments.
++ 'font-lock-keyword-face' -- for keywords with special significance like 'setq' in elisp.
++ 'global-prettify-symbols-mode' -- change certain keywords to symbols, such as lambda!
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "mononoki" :size 16))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
+#+end_src
+
+* ORG MODE
+My org directory:
+
+#+begin_src emacs-lisp
+(setq org-directory "~/org/")
+#+end_src
+
+Prettyfy org:
+
+#+begin_src emacs-lisp
+(setq org-hide-emphasis-markers t)
+#+end_src
+
+
+Set header fonts to different sizes:
+
+#+begin_src emacs-lisp
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.2))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.0))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+)
+#+end_src
+
+* PROJECTILE
+Set the auto discovery directory:
+#+begin_src emacs-lisp
+(setq projectile-project-search-path '("~/Projects"))
+#+end_src
+* LINE SETTINGS
+#+begin_src emacs-lisp
+(setq display-line-numbers-type t)
+#+end_src
+
+* THEME
+Using the BEST theme ever, other opinions are wrong:
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-dracula)
+#+end_src
