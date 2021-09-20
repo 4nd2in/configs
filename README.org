@@ -1,1 +1,8 @@
+#+TITLE: 4nd2in's config overview
+#+AUTHOR: 4nd2in
+
 * CONTENT :toc:
+- [[#about][ABOUT]]
+
+* ABOUT
+Repository with all my important configs.
