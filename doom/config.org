@@ -1,9 +1,11 @@
 #+TITLE: 4nd2in's Doom Emacs Config
 #+AUTHOR: 4nd2in
-#+PROPERTY: header-args :tangle config.el
+#+PROPERTY: header-args :tangle ~/config.el
 
 * CONTENT :toc:
 - [[#about][ABOUT]]
+  - [[#how-to-use][How to use]]
+  - [[#activate-meta-on-mac][Activate meta on mac]]
 - [[#emojis][EMOJIS]]
 - [[#fonts][FONTS]]
 - [[#org-mode][ORG MODE]]
@@ -12,7 +14,17 @@
 - [[#theme][THEME]]
 
 * ABOUT
-Personal Doom Emacs Config written in ORG Mode. Because its cool.
+Personal Doom Emacs Config written in ORG Mode. Because its cool. Anyway here a short description how to use this file:
+
+** How to use
+| COMMAND           | DESCRIPTION                                                         | KEYBINDING |
+|-------------------+---------------------------------------------------------------------+------------|
+| org-ctrl-c-ctrl-c | Use this with your cursor placed in the header to refresh document. | C-c C-c    |
+| org-babel-tangle  | Write out all code blocks to the file specified in the header.      | C-c C-v t  |
+
+** Activate meta on mac
+In iTerm2 option/alt keys can not be used as meta key by default. To use it as meta you have to create a new profile. In the "Keys" tab, choose "Esc+" for one of your option keys.
+
 Also setting my credentials:
 
 #+begin_src emacs-lisp
