@@ -1,11 +1,15 @@
 #+TITLE: 4nd2in's Doom Emacs Config
 #+AUTHOR: 4nd2in
-#+PROPERTY: header-args :tangle ~/config.el
+#+PROPERTY: header-args :tangle config.el
 
 * CONTENT :toc:
 - [[#about][ABOUT]]
   - [[#how-to-use][How to use]]
   - [[#activate-meta-on-mac][Activate meta on mac]]
+- [[#dired][DIRED]]
+  - [[#keybindings-to-open-dired][Keybindings To Open Dired]]
+  - [[#keybindings-within-dired][Keybindings Within Dired]]
+  - [[#keybindings-within-dired-with-peep-dired-mode-enabled][Keybindings Within Dired With Peep-Dired-Mode Enabled]]
 - [[#emojis][EMOJIS]]
 - [[#fonts][FONTS]]
 - [[#org-mode][ORG MODE]]
@@ -30,6 +34,74 @@ Also setting my credentials:
 #+begin_src emacs-lisp
 (setq user-full-name "4nd2in")
 #+end_src
+
+* DIRED
+Dired is the file manager within Emacs.  Below, I setup keybindings for image previews (peep-dired).  Doom Emacs does not use 'SPC d' for any of its keybindings, so I've chosen the format of 'SPC d' plus 'key'.
+
+** Keybindings To Open Dired
+| COMMAND    | DESCRIPTION                        | KEYBINDING |
+|------------+------------------------------------+------------|
+| dired      | /Open dired file manager/            | SPC d d    |
+| dired-jump | /Jump to current directory in dired/ | SPC d j    |
+
+** Keybindings Within Dired
+| COMMAND             | DESCRIPTION                                 | KEYBINDING |
+|---------------------+---------------------------------------------+------------|
+| dired-view-file     | /View file in dired/                          | SPC d v    |
+| dired-up-directory  | /Go up in directory tree/                     | h          |
+| dired-find-file     | /Go down in directory tree (or open if file)/ | l          |
+| dired-next-line     | Move down to next line                      | j          |
+| dired-previous-line | Move up to previous line                    | k          |
+| dired-mark          | Mark file at point                          | m          |
+| dired-unmark        | Unmark file at point                        | u          |
+
+** Keybindings Within Dired With Peep-Dired-Mode Enabled
+| COMMAND              | DESCRIPTION                              | KEYBINDING |
+|----------------------+------------------------------------------+------------|
+| peep-dired           | /Toggle previews within dired/             | SPC d p    |
+| peep-dired-next-file | /Move to next file in peep-dired-mode/     | j          |
+| peep-dired-prev-file | /Move to previous file in peep-dired-mode/ | k          |
+
+#+BEGIN_SRC emacs-lisp
+(map! :leader
+      (:prefix ("d" . "dired")
+       :desc "Open dired" "d" #'dired
+       :desc "Dired jump to current" "j" #'dired-jump)
+      (:after dired
+       (:map dired-mode-map
+        :desc "Peep-dired image previews" "d p" #'peep-dired
+        :desc "Dired view file" "d v" #'dired-view-file)))
+;; Make 'h' and 'l' go back and forward in dired. Much faster to navigate the directory structure!
+(evil-define-key 'normal dired-mode-map
+  (kbd "M-RET") 'dired-display-file
+  (kbd "h") 'dired-up-directory
+  (kbd "l") 'dired-open-file ; use dired-find-file instead of dired-open.
+  (kbd "m") 'dired-mark
+  (kbd "t") 'dired-toggle-marks
+  (kbd "u") 'dired-unmark
+  (kbd "C") 'dired-do-copy
+  (kbd "D") 'dired-do-delete
+  (kbd "J") 'dired-goto-file
+  (kbd "M") 'dired-chmod
+  (kbd "O") 'dired-chown
+  (kbd "P") 'dired-do-print
+  (kbd "R") 'dired-rename
+  (kbd "T") 'dired-do-touch
+  (kbd "Y") 'dired-copy-filenamecopy-filename-as-kill ; copies filename to kill ring.
+  (kbd "+") 'dired-create-directory
+  (kbd "-") 'dired-up-directory
+  (kbd "% l") 'dired-downcase
+  (kbd "% u") 'dired-upcase
+  (kbd "; d") 'epa-dired-do-decrypt
+  (kbd "; e") 'epa-dired-do-encrypt)
+;; If peep-dired is enabled, you will get image previews as you go up/down with 'j' and 'k'
+(evil-define-key 'normal peep-dired-mode-map
+  (kbd "j") 'peep-dired-next-file
+  (kbd "k") 'peep-dired-prev-file)
+(add-hook 'peep-dired-hook 'evil-normalize-keymaps)
+;; Get file icons in dired
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+#+END_SRC
 
 * EMOJIS
 Emojify is an extension for Emacs to display emojis. It can display GitHub style emojis like :smile: or plain ascii ones like :)

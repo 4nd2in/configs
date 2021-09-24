@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
+(package! dired-open)
 (package! emojify)
 (package! evil-tutor)
 (package! org-bullets)
+(package! peep-dired)
