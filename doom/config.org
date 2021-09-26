@@ -5,13 +5,16 @@
 * CONTENT :toc:
 - [[#about][ABOUT]]
   - [[#how-to-use][How to use]]
-  - [[#activate-meta-on-mac][Activate meta on mac]]
+  - [[#activate-meta-in-iterm][Activate Meta in iTerm]]
+  - [[#about-fonts][About Fonts]]
+  - [[#credentials][Credentials]]
 - [[#dired][DIRED]]
   - [[#keybindings-to-open-dired][Keybindings To Open Dired]]
   - [[#keybindings-within-dired][Keybindings Within Dired]]
   - [[#keybindings-within-dired-with-peep-dired-mode-enabled][Keybindings Within Dired With Peep-Dired-Mode Enabled]]
 - [[#emojis][EMOJIS]]
 - [[#fonts][FONTS]]
+- [[#frame-size][FRAME SIZE]]
 - [[#org-mode][ORG MODE]]
 - [[#projectile][PROJECTILE]]
 - [[#line-settings][LINE SETTINGS]]
@@ -21,16 +24,18 @@
 Personal Doom Emacs Config written in ORG Mode. Because its cool. Anyway here a short description how to use this file:
 
 ** How to use
-| COMMAND           | DESCRIPTION                                                         | KEYBINDING |
-|-------------------+---------------------------------------------------------------------+------------|
-| org-ctrl-c-ctrl-c | Use this with your cursor placed in the header to refresh document. | C-c C-c    |
-| org-babel-tangle  | Write out all code blocks to the file specified in the header.      | C-c C-v t  |
+| COMMAND           | DESCRIPTION                                                             | KEYBINDING |
+|-------------------+-------------------------------------------------------------------------+------------|
+| org-ctrl-c-ctrl-c | /Use this with your cursor placed in the header to refresh the document./ | C-c C-c    |
+| org-babel-tangle  | /Write out all code blocks to the file specified in the header./          | C-c C-v t  |
 
-** Activate meta on mac
+** Activate Meta in iTerm
 In iTerm2 option/alt keys can not be used as meta key by default. To use it as meta you have to create a new profile. In the "Keys" tab, choose "Esc+" for one of your option keys.
 
-Also setting my credentials:
+** About Fonts
+Terminal-based applications do not support multiple fonts and thus can not show icons. To support multiple fonts (including icons) the gui version of Emacs must be used.
 
+** Credentials
 #+begin_src emacs-lisp
 (setq user-full-name "4nd2in")
 #+end_src
@@ -41,13 +46,13 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 ** Keybindings To Open Dired
 | COMMAND    | DESCRIPTION                        | KEYBINDING |
 |------------+------------------------------------+------------|
-| dired      | /Open dired file manager/            | SPC d d    |
-| dired-jump | /Jump to current directory in dired/ | SPC d j    |
+| dired      | /Open dired file manager/            | SPC-d-d    |
+| dired-jump | /Jump to current directory in dired/ | SPC-d-j    |
 
 ** Keybindings Within Dired
 | COMMAND             | DESCRIPTION                                 | KEYBINDING |
 |---------------------+---------------------------------------------+------------|
-| dired-view-file     | /View file in dired/                          | SPC d v    |
+| dired-view-file     | /View file in dired/                          | SPC-d-v    |
 | dired-up-directory  | /Go up in directory tree/                     | h          |
 | dired-find-file     | /Go down in directory tree (or open if file)/ | l          |
 | dired-next-line     | Move down to next line                      | j          |
@@ -58,7 +63,7 @@ Dired is the file manager within Emacs.  Below, I setup keybindings for image pr
 ** Keybindings Within Dired With Peep-Dired-Mode Enabled
 | COMMAND              | DESCRIPTION                              | KEYBINDING |
 |----------------------+------------------------------------------+------------|
-| peep-dired           | /Toggle previews within dired/             | SPC d p    |
+| peep-dired           | /Toggle previews within dired/             | SPC-d-p    |
 | peep-dired-next-file | /Move to next file in peep-dired-mode/     | j          |
 | peep-dired-prev-file | /Move to previous file in peep-dired-mode/ | k          |
 
@@ -120,13 +125,22 @@ Related doom emacs font settings:
 + 'global-prettify-symbols-mode' -- change certain keywords to symbols, such as lambda!
 
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "mononoki" :size 16))
+(setq doom-font (font-spec :family "mononoki" :size 15)
+      doom-variable-pitch-font (font-spec :family "Arial" :size 15)
+      doom-big-font (font-spec :family "mononoki" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+#+end_src
+
+* FRAME SIZE
+Maximize width and height of the initial frame.
+
+#+begin_src emacs-lisp
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 #+end_src
 
 * ORG MODE
@@ -166,7 +180,7 @@ Set the auto discovery directory:
 #+end_src
 
 * THEME
-Using the BEST theme ever, other opinions are wrong:
+Using the BEST theme, other opinions are wrong:
 #+begin_src emacs-lisp
 (setq doom-theme 'doom-dracula)
 #+end_src

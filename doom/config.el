@@ -42,13 +42,17 @@
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
-(setq doom-font (font-spec :family "mononoki" :size 16))
+(setq doom-font (font-spec :family "mononoki" :size 15)
+      doom-variable-pitch-font (font-spec :family "Arial" :size 15)
+      doom-big-font (font-spec :family "mononoki" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
+
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 (setq org-directory "~/org/")
 
