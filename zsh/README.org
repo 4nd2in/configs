@@ -1,3 +1,22 @@
+#+TITLE: 4nd2in's zshell runtime config
+#+AUTHOR: 4nd2in
+#+PROPERTY: header-args :tangle .zshrc
+
+* CONTENT :toc:
+- [[#header][HEADER]]
+- [[#aliases][ALIASES]]
+  - [[#git][GIT]]
+  - [[#shell][SHELL]]
+- [[#exports][EXPORTS]]
+- [[#history][HISTORY]]
+- [[#keybindings][KEYBINDINGS]]
+- [[#options][OPTIONS]]
+- [[#prompt][PROMPT]]
+- [[#style][STYLE]]
+- [[#helper-functions][HELPER FUNCTIONS]]
+
+* HEADER
+#+begin_src shell
 # author: 4nd2in
 
 # ------------------------------------------------------------------------------
@@ -7,7 +26,11 @@
 # ------------------------------------------------------------------------------
 # MAIN CONFIG
 # ------------------------------------------------------------------------------
+#+end_src
 
+* ALIASES
+** GIT
+#+begin_src shell
 # GIT ALIASES
 alias add='git add'
 alias adda='git add .'
@@ -27,45 +50,98 @@ alias subinit='git submodule init'
 alias subup='git submodule update'
 alias switch='git switch'
 alias switchc='git switch -c'
+#+end_src
 
+** SHELL
+#+begin_src shell
 # SHELL ALIASES
 alias ll='ls -lah'
 alias grep='grep --color=auto'
+#+end_src
 
+* EXPORTS
+#+begin_src shell
 # EXPORTS
 export EDITOR=vim
 export VISUAL=vim
 
 export PATH=$PATH:$HOME/.emacs.d/bin
 export PATH=$PATH:$HOME/Applications
+#+end_src
 
+* HISTORY
+#+begin_src shell
 # HISTORY
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+#+end_src
 
+* KEYBINDINGS
+Adding custom zshell keybindings. Zshell is using GNU Emacs keybinding per default. This can be changed to vi keybindings if needed.
+
+| Sequence  | Key        |
+|-----------+------------|
+| ^[[A      | Arrow Up   |
+| ^[[B      | Arrow Down |
+
+
+#+begin_src shell
 # KEYBINDINGS
 bindkey -e # -e for emacs -v for vi keybindings
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+#+end_src
 
+* OPTIONS
+#+begin_src shell
 # OPTIONS
 setopt SHARE_HISTORY
 # allow '#', '~' and '^' when globbing
 setopt extended_glob
+#+end_src
+* PROMPT
+Setting a custom prompt with the current git branch and staging status.
 
+| Variable   | Description                                                            |
+|------------+------------------------------------------------------------------------|
+| PROMPT     | Left side of the prompt                                                |
+| RPROMPT    | Right side of the prompt                                               |
+| %D         | The date in yy-mm-dd format                                            |
+| %D{string} | string is formatted using the strftime function                        |
+| %F{color}  | Setting prompt color                                                   |
+| %f         | Resetting prompt color to default                                      |
+| %l         | Username                                                               |
+| %M         | Full hostname                                                          |
+| %m         | The hostname up to the first '.', int can be added after '%'           |
+| %T         | Current time in 24h format                                             |
+| %t         | Current time in 12h format                                             |
+| %*         | Current time in 24h format with seconds                                |
+| %?         | The return status of the last command before prompt                    |
+| %#         | A '#' if the shell has privileges, a '%' if not. same as '%(!.#.%%)'   |
+| %/ or %d   | CWD, int can be added after '%' for trailing components, 0 = full path |
+| %~         | As %d and %/, but if CWD is $HOME it is replaced with '~'              |
+
+
+#+begin_src shell
 # PROMPT
 # lookup git branch
 autoload -Uz compinit && compinit
 # render custom prompt
 precmd_functions=(render-prompt)
+#+end_src
 
+* STYLE
+#+begin_src shell
 # STYLE
 # case-insensitive matching
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # use completion menu
 zstyle ':completion:*' menu select
+#+end_src
 
+* HELPER FUNCTIONS
+#+begin_src shell
 # ------------------------------------------------------------------------------
 # HELPER FUNCTIONS
 # ------------------------------------------------------------------------------
@@ -207,3 +283,4 @@ function render-prompt {
         RPROMPT=$(git-render-prompt "%branch%staged-flag%modified-flag%f")
     fi
 }
+#+end_src
