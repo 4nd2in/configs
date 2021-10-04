@@ -5,6 +5,7 @@
 * CONTENT :toc:
 - [[#header][HEADER]]
 - [[#aliases][ALIASES]]
+  - [[#apps--files][APPS & FILES]]
   - [[#git][GIT]]
   - [[#shell][SHELL]]
 - [[#exports][EXPORTS]]
@@ -29,6 +30,14 @@
 #+end_src
 
 * ALIASES
+** APPS & FILES
+#+begin_src shell
+# APPS & FILES ALIASES
+alias vimrc='vim $HOME/.vimrc'
+alias zshrc='vim $HOME/.zshrc'
+alias zshsrc='source $HOME/.zshrc'
+#+end_src
+
 ** GIT
 #+begin_src shell
 # GIT ALIASES
@@ -55,7 +64,10 @@ alias switchc='git switch -c'
 ** SHELL
 #+begin_src shell
 # SHELL ALIASES
+alias ..='cd ..'
 alias ll='ls -lah'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 #+end_src
 

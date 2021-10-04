@@ -8,6 +8,11 @@
 # MAIN CONFIG
 # ------------------------------------------------------------------------------
 
+# APPS & FILES ALIASES
+alias vimrc='vim $HOME/.vimrc'
+alias zshrc='vim $HOME/.zshrc'
+alias zshsrc='source $HOME/.zshrc'
+
 # GIT ALIASES
 alias add='git add'
 alias adda='git add .'
@@ -29,7 +34,10 @@ alias switch='git switch'
 alias switchc='git switch -c'
 
 # SHELL ALIASES
+alias ..='cd ..'
 alias ll='ls -lah'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 
 # EXPORTS
