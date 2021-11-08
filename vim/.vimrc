@@ -13,7 +13,7 @@ set nu
 " sets how many lines of history VIM has to remember
 set history=1000
 
-" Set to auto read when a file is changed from the outside
+" set to auto read when a file is changed from the outside
 set autoread
 au FocusGained,BufEnter * checktime
 
@@ -23,6 +23,9 @@ set wildmode=longest:full,full
 
 " always show current position
 set ruler
+
+" allow movements Left and Right to move over wrapped lines
+set whichwrap=b,s,<,>,[,]
 
 " case-insensitive search
 set ignorecase
@@ -48,6 +51,12 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
+
+" display whitespace characters (tabs, trailing spaces, non breaking spaces, ...)
+set list listchars=tab:→\ ,trail:·,nbsp:⎵,precedes:<,extends:>
+
+" show break
+let &showbreak = '↳ '
 
 " use 2 spaces instead of tab
 set expandtab
