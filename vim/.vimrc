@@ -1,3 +1,10 @@
+" save undos over vim sessions
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0777)
+endif
+set undodir=~/.vim/undo
+set undofile
+
 " use dracula as colorscheme
 packadd! dracula
 colorscheme dracula
