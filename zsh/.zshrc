@@ -1,7 +1,7 @@
 # author: 4nd2in
 
 # ------------------------------------------------------------------------------
-# ADDITIONAL CONFIGS
+# ADDITIONAL CONFIGS
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
@@ -17,6 +17,7 @@ alias zshsrc='source $HOME/.zshrc'
 alias add='git add'
 alias adda='git add .'
 alias amend='git commit --amend'
+alias branchmv='git branch -m'
 alias commit='git commit -m'
 alias commita='git commit -am'
 alias clone='git clone'
@@ -33,26 +34,26 @@ alias subup='git submodule update'
 alias switch='git switch'
 alias switchc='git switch -c'
 
-# SHELL ALIASES
+# SHELL ALIASES
 alias ..='cd ..'
 alias ll='ls -lah'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 
-# EXPORTS
+# EXPORTS
 export EDITOR=vim
 export VISUAL=vim
 
 export PATH=$PATH:$HOME/.emacs.d/bin
 export PATH=$PATH:$HOME/Applications
 
-# HISTORY
+# HISTORY
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 
-# KEYBINDINGS
+# KEYBINDINGS
 bindkey -e # -e for emacs -v for vi keybindings
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
@@ -62,16 +63,16 @@ setopt SHARE_HISTORY
 # allow '#', '~' and '^' when globbing
 setopt extended_glob
 
-# PROMPT
+# PROMPT
 # lookup git branch
 autoload -Uz compinit && compinit
-# render custom prompt
+# render custom prompt
 precmd_functions=(render-prompt)
 
-# STYLE
+# STYLE
 # case-insensitive matching
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-# use completion menu
+# use completion menu
 zstyle ':completion:*' menu select
 
 # ------------------------------------------------------------------------------
