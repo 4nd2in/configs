@@ -1,4 +1,4 @@
-#+TITLE: 4nd2in's zshell runtime config
+#+TITLE: 4nd2in's zsh runtime config
 #+AUTHOR: 4nd2in
 #+PROPERTY: header-args :tangle .zshrc
 
@@ -91,19 +91,23 @@ SAVEHIST=100000
 #+end_src
 
 * KEYBINDINGS
-Adding custom zshell keybindings. Zshell is using GNU Emacs keybinding per default. This can be changed to vi keybindings if needed.
+Adding custom zsh keybindings. Zsh is using GNU Emacs keybinding per default. This can be changed to vi keybindings if needed.
+To edit long commands in EDITOR and execute them after saving, 'edit-command-line' is used.
 
-| Sequence  | Key        |
-|-----------+------------|
-| ^[[A      | Arrow Up   |
-| ^[[B      | Arrow Down |
-
+| Sequence | Key        |
+|----------+------------|
+| ^[[A     | Arrow Up   |
+| ^[[B     | Arrow Down |
+| ^x^e     | C-x C-e    |
 
 #+begin_src shell
 # KEYBINDINGS
 bindkey -e # -e for emacs -v for vi keybindings
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 #+end_src
 
 * OPTIONS

@@ -57,6 +57,9 @@ SAVEHIST=100000
 bindkey -e # -e for emacs -v for vi keybindings
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
 
 # OPTIONS
 setopt SHARE_HISTORY
