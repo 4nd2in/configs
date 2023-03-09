@@ -1,0 +1,122 @@
+format = """
+[](#FF80BF)\
+$os\
+$hostname\
+$username\
+[](bg:#CF80DC fg:#FF80BF)\
+$directory\
+[](fg:#CF80DC bg:#9580FF)\
+$git_branch\
+$git_status\
+[](fg:#9580FF bg:#8BBEF5)\
+$nodejs\
+$rust\
+[](fg:#8BBEF5 bg:#80FFEA)\
+$docker_context\
+[](fg:#80FFEA bg:#6BD093)\
+$time\
+[](fg:#6BD093)\
+\n$character
+"""
+
+[username]
+show_always = true
+style_user = "bg:#FF80BF"
+style_root = "bg:#FF80BF"
+format = '[$user ]($style)'
+disabled = false
+
+[os]
+style = "bg:#FF80BF"
+disabled = true
+
+[hostname]
+ssh_only = true
+ssh_symbol = '  '
+trim_at = ''
+format = '[$hostname$ssh_symbol ]($style)'
+style = "bg:#FF80BF"
+
+[directory]
+style = "bg:#CF80DC"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+symbol = ""
+style = "bg:#9580FF"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+conflicted = "   "
+deleted = " 﫧"
+modified = "  "
+staged = "  "
+untracked = "  "
+style = "bg:#9580FF"
+format = '[$conflicted$deleted$untracked$modified$staged$ahead_behind ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:#8BBEF5"
+format = '[ $symbol ($version) ]($style)'
+
+[ruby]
+symbol = ""
+style = "bg:#8BBEF5"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:#8BBEF5"
+format = '[ $symbol ($version) ]($style)'
+
+[swift]
+symbol = ""
+style = "bg:#8BBEF5"
+format = '[ $symbol ($version) ]($style)'
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "bg:#6BD093"
+format = '[ 󱑎 $time ]($style)'
+
+[os.symbols]
+Alpine = " "
+Amazon = " "
+Android = " "
+Arch = " "
+CentOS = " "
+Debian = " "
+DragonFly = " "
+Emscripten = " "
+EndeavourOS = " "
+Fedora = " "
+FreeBSD = " "
+Garuda = "﯑ "
+Gentoo = " "
+HardenedBSD = "ﲊ "
+Illumos = " "
+Linux = " "
+Macos = " "
+Manjaro = " "
+Mariner = " "
+MidnightBSD = " "
+Mint = " "
+NetBSD = " "
+NixOS = " "
+OpenBSD = " "
+openSUSE = " "
+OracleLinux = " "
+Pop = " "
+Raspbian = " "
+Redhat = " "
+RedHatEnterprise = " "
+Redox = " "
+Solus = "ﴱ "
+SUSE = " "
+Ubuntu = " "
+Unknown = " "
+Windows = " "
