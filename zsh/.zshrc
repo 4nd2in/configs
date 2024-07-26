@@ -1,70 +1,66 @@
-# author: 4nd2in
-
-# ------------------------------------------------------------------------------
-# ADDITIONAL CONFIGS
-# ------------------------------------------------------------------------------
-
-# ------------------------------------------------------------------------------
-# MAIN CONFIG
-# ------------------------------------------------------------------------------
-
 # APPS & FILES ALIASES
 alias vimrc='vim $HOME/.vimrc'
 alias zshrc='vim $HOME/.zshrc'
 alias zshsrc='source $HOME/.zshrc'
+alias hosts='vim /Users/andrin/.ssh/known_hosts'
+alias smoca='cd $HOME/smoca'
+alias me='cd $HOME/me'
 
 # GIT ALIASES
-alias add='git add'
-alias adda='git add .'
-alias amend='git commit --amend'
-alias branchmv='git branch -m'
-alias commit='git commit -m'
-alias commita='git commit -am'
+alias branch='git branch'
 alias clone='git clone'
 alias glog='git log --graph --abbrev-commit --decorate --all --oneline'
+alias main='git switch main'
+alias merge='git mergetool'
 alias pull='git pull origin'
 alias push='git push'
-alias restore='git restore'
-alias rmstaged='git restore --staged'
 alias stash='git stash'
-alias stat='git status'
-alias subadd='git submodule add'
-alias subinit='git submodule init'
-alias subup='git submodule update'
-alias switch='git switch'
-alias switchc='git switch -c'
+alias suba='git submodule add'
+alias subi='git submodule init'
+alias subu='git submodule update'
+alias swi='git switch'
+alias swic='git switch -c'
+
+# RAILS ALIASES
+alias rg='rails generate'
+alias rg:mo='rails generate model'
+alias rg:mi='rails generate migration'
+alias rg:v='rails generate view'
+alias rg:c='rails generate controller'
+alias rdb:c='rails db:create'
+alias rdb:d='rails db:drop'
+alias rdb:s='rails db:seed'
+alias rdb:m='rails db:migrate'
+alias rdb:cms='rails db:create db:migrate db:seed'
 
 # SHELL ALIASES
+alias l='ls -lah'
+alias la='ls -lah'
 alias ..='cd ..'
-alias ll='ls -lah --color=auto'
+alias ...='cd ../..'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 
-# EXPORTS
+# ENV
 export EDITOR=vim
 export VISUAL=vim
 
-# HISTORY
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-
-# KEYBINDINGS
-bindkey -e # -e for emacs -v for vi keybindings
+# KEYBINDS
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
-autoload -U edit-command-line
+bindkey -e
+
+# inline command edit
+autoload edit-command-line
 zle -N edit-command-line
-bindkey '^x^e' edit-command-line
+bindkey '^xe' edit-command-line
 
-# OPTIONS
+# HISTORY
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
 setopt SHARE_HISTORY
-# allow '#', '~' and '^' when globbing
-setopt extended_glob
-
-# PROMPT
-precmd_functions=(render-prompt)
 
 # STYLE
 # case-insensitive matching
@@ -72,16 +68,17 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # use completion menu
 zstyle ':completion:*' menu select
 
-# ------------------------------------------------------------------------------
-# HELPER FUNCTIONS
-# ------------------------------------------------------------------------------
+# PROMPT
+precmd_functions=(render-prompt)
+
 function render-prompt {
-    if (( ${+SSH_CLIENT} )); then
-        PROMPT="%F{yellow}SSH%f "
-    else
-        PROMPT=""
-    fi
-    PROMPT+="%(1j.%B%%%b .)"
-    PROMPT+="%~ "
-    PROMPT+="%(?.%F{green}.%F{red})%B▌%b%f "
+  PROMPT=""
+  PROMPT+="%(1j.%B%%%b .)"
+  PROMPT+="%~ "
+  PROMPT+="%(?.%F{green}.%F{red})%B❯%b%f "
 }
+
+# CONVENIENCE
+
+# allow #, ~ and ^ when globbing
+setopt extended_glob
