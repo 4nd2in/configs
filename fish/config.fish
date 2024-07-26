@@ -8,12 +8,16 @@ alias fishsrc='source $HOME/.config/fish/config.fish'
 alias vimrc='vim $HOME/.vimrc'
 alias zshrc='vim $HOME/.zshrc'
 alias zshsrc='source $HOME/.zshrc'
+alias known_hosts='vim /Users/andrin/.ssh/known_hosts'
+alias smoca='cd $HOME/smoca'
+alias me='cd $HOME/me'
 
 # GIT ALIASES
 alias branch='git branch'
 alias clone='git clone'
 alias glog='git log --graph --abbrev-commit --decorate --all --oneline'
 alias main='git switch main'
+alias merge='git mergetool'
 alias pull='git pull origin'
 alias push='git push'
 alias stash='git stash'
@@ -23,8 +27,21 @@ alias subu='git submodule update'
 alias swi='git switch'
 alias swic='git switch -c'
 
+# RAILS ALIASES
+alias rg='rails generate'
+alias rg:mo='rails generate model'
+alias rg:mi='rails generate migration'
+alias rg:v='rails generate view'
+alias rg:c='rails generate controller'
+alias rdb:c='rails db:create'
+alias rdb:d='rails db:drop'
+alias rdb:s='rails db:seed'
+alias rdb:m='rails db:migrate'
+alias rdb:cms='rails db:create db:migrate db:seed'
+
 # SHELL ALIASES
 alias ..='cd ..'
+alias ...='cd ../..'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
@@ -35,6 +52,3 @@ set -Ux VISUAL vim
 
 # remove greeting
 set -g fish_greeting
-
-# AT END STARSHIP
-starship init fish | source
